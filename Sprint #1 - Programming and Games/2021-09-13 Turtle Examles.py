@@ -19,13 +19,13 @@ plot(rand(500))
 pwd
 
 
-# In[3]:
+# In[2]:
 
 
 from mplturtle import *
 
 
-# In[5]:
+# In[3]:
 
 
 reset(figsize=(5,5))
@@ -38,7 +38,7 @@ forward(90)
 
 # # Square
 
-# In[7]:
+# In[4]:
 
 
 reset(figsize=(5,5))
@@ -53,7 +53,7 @@ forward(50)
 right(90)
 
 
-# In[11]:
+# In[5]:
 
 
 reset(figsize=(5,5))  # for the class notebooks, including figsize
@@ -68,7 +68,7 @@ forward(size)
 right(90)
 
 
-# In[12]:
+# In[6]:
 
 
 reset(figsize=(5,5))  # for the class notebooks, including figsize
@@ -82,7 +82,7 @@ for i in range(4):
 print("end")
 
 
-# In[14]:
+# In[7]:
 
 
 reset(figsize=(5,5))  # for the class notebooks, including figsize
@@ -107,6 +107,38 @@ for i in range(4):
     right(90)
     print("here")
 print("end")
+
+
+# In[8]:
+
+
+def draw_square(size):
+    for i in range(4):
+        forward(size)
+        right(90)
+    
+def move_over(size):
+    penup()
+    forward(size)  # move over
+    pendown()
+
+
+# In[13]:
+
+
+reset(figsize=(5,5))  # for the class notebooks, including figsize
+
+draw_square(80)
+
+move_over(200)
+
+draw_square(30)
+
+
+# In[14]:
+
+
+animate()
 
 
 # In[ ]:

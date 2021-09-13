@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[2]:
 
 
 5+5
@@ -21,14 +21,26 @@
 
 # # Variables
 
-# In[2]:
+# In[5]:
 
 
 a=5
 bob=678.5
 
 
-# In[3]:
+# In[6]:
+
+
+bob
+
+
+# In[7]:
+
+
+Bob
+
+
+# In[4]:
 
 
 a*bob
@@ -133,6 +145,69 @@ get_ipython().run_line_magic('pinfo', 'math')
 
 
 get_ipython().run_line_magic('pinfo', 'sin')
+
+
+# # Loops
+
+# In[8]:
+
+
+for bob in range(5):
+    print("here")
+    print(bob)
+
+
+# In[9]:
+
+
+print('this is outside of the loop')
+for bob in range(5):
+    print("here in the loop")
+    print(bob)
+    
+print("this is outside of the loop again")
+
+
+# In[10]:
+
+
+for j in range(3):
+    print("another")
+    
+print('this is outside of the loop')
+for bob in range(5):
+    print("here in the loop")
+    print(bob)
+    
+print("this is outside of the loop again")    
+
+
+# In[11]:
+
+
+for j in range(3):
+    print("another")
+    
+    print('this is outside of the loop')
+    for bob in range(5):
+        print("here in the loop")
+        print(bob)
+
+    print("this is outside of the loop again")    
+
+
+# In[12]:
+
+
+for j in range(3):
+    print("another")
+    
+    print('this is outside of the loop')
+for bob in range(5):
+    print("here in the loop")
+    print(bob)
+    
+print("this is outside of the loop again")    
 
 
 # In[ ]:
