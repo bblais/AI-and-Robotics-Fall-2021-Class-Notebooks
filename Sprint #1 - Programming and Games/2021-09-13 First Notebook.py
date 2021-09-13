@@ -76,40 +76,71 @@ a
 sin(30)
 
 
-# In[18]:
+# In[13]:
 
 
 from math import sin,radians
 
 
-# In[12]:
+# In[14]:
 
 
 sin(90)
 
 
-# In[14]:
+# In[15]:
 
 
 sin(3.141592653589793235/2)
 
 
-# In[17]:
+# In[16]:
 
 
 sin(radians(90))
 
 
-# In[19]:
+# In[17]:
 
 
 from math import *
 
 
-# In[20]:
+# In[18]:
 
 
 cos(radians(90))
+
+
+# In[19]:
+
+
+def sin(x):
+    return 5
+
+
+# In[20]:
+
+
+sin(radians(90))
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
 
 # In[21]:
