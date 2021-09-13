@@ -7,7 +7,7 @@
 5+5
 
 
-# this is markdown, for notes.  
+# this is markdown, for notes.  https://www.markdownguide.org/basic-syntax
 # 
 # # heading
 # 
