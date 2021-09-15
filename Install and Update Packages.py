@@ -3,10 +3,16 @@
 
 # ## Sprint #1
 
-# In[3]:
+# In[1]:
 
 
 get_ipython().system('pip install "git+git://github.com/bblais/Game" --upgrade')
+
+
+# In[2]:
+
+
+import Game
 
 
 # ## Sprint #2
