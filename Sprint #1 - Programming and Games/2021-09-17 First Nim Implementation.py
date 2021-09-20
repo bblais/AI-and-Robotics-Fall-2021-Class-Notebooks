@@ -59,7 +59,7 @@ state=initial_state()
 show_state(state)
 
 
-# In[9]:
+# In[6]:
 
 
 def valid_moves(state,player):
@@ -71,24 +71,90 @@ def valid_moves(state,player):
         return [1,2,3]
 
 
-# In[10]:
+# In[7]:
 
 
 valid_moves(21,1)
 
 
-# In[11]:
+# In[8]:
 
 
 valid_moves(2,1)
 
 
-# In[12]:
+# In[10]:
 
 
 def update_state(state,player,move):
     new_state=state-move
     return new_state
+
+
+# In[14]:
+
+
+def win_status(state,player):
+    # the state is *after* the move for the player
+    if state==1:
+        return "win"
+    
+    if state==0:
+        return "lose"
+    
+    return None # mid-game
+
+
+# In[ ]:
+
+
+
+
+
+# In[15]:
+
+
+def human_move(state,player):
+    
+
+    
+    move=int(input("how many sticks to take (1,2, or 3?"))
+    
+
+    return move
+    
+
+
+# In[16]:
+
+
+human_agent=Agent(human_move)
+
+
+# In[18]:
+
+
+def random_move(state,player):
+    
+    move=random.choice(valid_moves(state,player))
+    return move
+
+
+random_agent=Agent(random_move)
+
+
+# In[17]:
+
+
+g=Game()
+g.run(human_agent,human_agent)
+
+
+# In[19]:
+
+
+g=Game()
+g.run(random_agent,random_agent)
 
 
 # In[ ]:

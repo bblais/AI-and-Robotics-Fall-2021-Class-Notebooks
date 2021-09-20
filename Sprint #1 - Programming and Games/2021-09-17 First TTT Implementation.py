@@ -22,49 +22,49 @@ initial_state()
 
 # ## diversion about Boards
 
-# In[20]:
+# In[4]:
 
 
 state=Board(5,3)
 
 
-# In[21]:
+# In[5]:
 
 
 state
 
 
-# In[22]:
+# In[6]:
 
 
 state[1]=5
 
 
-# In[23]:
+# In[7]:
 
 
 state
 
 
-# In[24]:
+# In[8]:
 
 
 state.show_locations()
 
 
-# In[25]:
+# In[9]:
 
 
 state[1,2]=11
 
 
-# In[26]:
+# In[10]:
 
 
 state
 
 
-# In[27]:
+# In[11]:
 
 
 state[0,1]
@@ -72,21 +72,21 @@ state[0,1]
 
 # ## back to TTT
 
-# In[28]:
+# In[12]:
 
 
 def show_state(state):
     print(state)
 
 
-# In[29]:
+# In[13]:
 
 
 state=initial_state()
 show_state(state)
 
 
-# In[30]:
+# In[14]:
 
 
 def valid_moves(state,player):
@@ -102,14 +102,14 @@ def valid_moves(state,player):
     return moves
 
 
-# In[31]:
+# In[15]:
 
 
 state=Board(3,3)
 valid_moves(state,1)
 
 
-# In[32]:
+# In[16]:
 
 
 state[2]=1
@@ -117,13 +117,13 @@ state[5]=2
 state
 
 
-# In[33]:
+# In[17]:
 
 
 valid_moves(state,1)
 
 
-# In[34]:
+# In[18]:
 
 
 def update_state(state,player,move):
@@ -132,6 +132,172 @@ def update_state(state,player,move):
     new_state[move]=player
     return new_state    
     
+
+
+# In[19]:
+
+
+state=initial_state()
+state
+
+
+# In[20]:
+
+
+update_state(state,1,5)
+
+
+# In[21]:
+
+
+state.show_locations()
+
+
+# In[22]:
+
+
+state=Board(3,3)
+state[5]=1
+state[2]=2
+state[4]=1
+
+
+# In[23]:
+
+
+state
+
+
+# In[24]:
+
+
+valid_moves(state,2)
+
+
+# In[25]:
+
+
+update_state(state,2,6)
+
+
+# In[28]:
+
+
+def win_status(state,player):
+    # the state is *after* the move for the player
+
+    #  0  1  2 
+    #  3  4  5 
+    #  6  7  8   
+    
+    # rows
+    if state[0]==player and state[1]==player and state[2]==player:
+        return "win"
+    if state[3]==player and state[4]==player and state[5]==player:
+        return "win"
+    if state[6]==player and state[7]==player and state[8]==player:
+        return "win"
+    
+    # columns
+    if state[0]==player and state[3]==player and state[6]==player:
+        return "win"
+    if state[1]==player and state[4]==player and state[7]==player:
+        return "win"
+    if state[2]==player and state[5]==player and state[8]==player:
+        return "win"
+    
+    # diagonals
+    if state[0]==player and state[4]==player and state[8]==player:
+        return "win"
+    if state[2]==player and state[4]==player and state[6]==player:
+        return "win"
+    
+    
+    if player==1:
+        other_player=2
+    else:
+        other_player=1
+        
+    # hack, unreadable, but works.  other_player=3-player
+    
+    
+    if not valid_moves(state,other_player):
+        return "stalemate"
+    
+    
+    
+    
+
+
+# In[27]:
+
+
+player=2
+
+if player==1:
+    other_player=2
+else:
+    other_player=1
+
+other_player
+
+
+# In[37]:
+
+
+def human_move(state,player):
+    
+    state.show_locations()
+    print("Player",player)
+    move=int(input("which square to move?"))
+    
+    
+    return move
+    
+
+
+# In[33]:
+
+
+state=initial_state()
+human_move(state,1)
+
+
+# In[38]:
+
+
+human_agent=Agent(human_move)
+
+
+# In[40]:
+
+
+def random_move(state,player):
+    
+    move=random.choice(valid_moves(state,player))
+    return move
+
+
+random_agent=Agent(random_move)
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[39]:
+
+
+g=Game()
+g.run(human_agent,human_agent)
 
 
 # In[ ]:
