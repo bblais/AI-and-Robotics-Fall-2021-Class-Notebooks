@@ -7,14 +7,15 @@
 from Game import *
 
 
-# In[2]:
+# In[41]:
 
 
 def initial_state():
-    return Board(3,3)
+    state=Board(3,3)
+    return state
 
 
-# In[3]:
+# In[42]:
 
 
 initial_state()
@@ -72,14 +73,14 @@ state[0,1]
 
 # ## back to TTT
 
-# In[12]:
+# In[43]:
 
 
 def show_state(state):
     print(state)
 
 
-# In[13]:
+# In[44]:
 
 
 state=initial_state()
@@ -109,7 +110,7 @@ state=Board(3,3)
 valid_moves(state,1)
 
 
-# In[16]:
+# In[45]:
 
 
 state[2]=1
