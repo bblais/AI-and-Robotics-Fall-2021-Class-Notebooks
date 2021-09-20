@@ -42,7 +42,7 @@ def initial_state():
 initial_state()
 
 
-# In[14]:
+# In[34]:
 
 
 def initial_state():
@@ -56,7 +56,7 @@ def initial_state():
     
 
 
-# In[15]:
+# In[35]:
 
 
 state=initial_state()
@@ -75,16 +75,35 @@ def find_all_pieces(state,player):
     return locations
 
 
-# In[17]:
+# In[36]:
 
 
 find_all_pieces(state,1)
 
 
-# In[18]:
+# In[37]:
 
 
 find_all_pieces(state,2)
+
+
+# In[38]:
+
+
+find_all_pieces(state,3)
+
+
+# In[ ]:
+
+
+if not find_all_pieces(state,player):
+    return "win"
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
@@ -129,11 +148,102 @@ start
 end
 
 
-# In[7]:
+# In[19]:
 
 
 state=Board(5,3)
 state.show_locations()
+
+
+# In[20]:
+
+
+state.rc_from_index(10)
+
+
+# In[21]:
+
+
+state.index_from_rc(3,1)
+
+
+# In[ ]:
+
+
+start,end = 1,2
+
+for start,end in [ 
+    [1,2], [3,4], [5,10], [2,-1]
+                ]:
+
+    if end>=0:
+        if state[start]==player and state[end]==0:
+            moves.append( [start,end] )
+    else:
+        if state[start]==player:
+            moves.append( [start,end] )
+        
+
+
+# In[ ]:
+
+
+
+
+
+# In[22]:
+
+
+moves=[]
+
+
+# In[25]:
+
+
+moves
+
+
+# In[29]:
+
+
+moves.append([2,3,4])
+moves
+
+
+# In[ ]:
+
+
+def valid_moves(state,player):
+    moves=[]
+    
+    if player==1:
+        
+        pass
+    
+    else:
+        
+        pass
+    
+    return moves
+    
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
 
 # In[8]:
