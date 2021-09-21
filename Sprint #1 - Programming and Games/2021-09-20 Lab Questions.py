@@ -188,7 +188,15 @@ for start,end in [
 # In[ ]:
 
 
+start,end = 1,2
+moves=[]
+for start,end in [ 
+    [1,2], [3,4], [5,10], 
+                ]:
 
+    if state[start]==player and state[end]==0:
+        moves.append( [start,end] )
+        
 
 
 # In[22]:
