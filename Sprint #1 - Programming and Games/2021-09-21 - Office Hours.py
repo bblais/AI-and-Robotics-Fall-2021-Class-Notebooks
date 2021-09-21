@@ -64,6 +64,93 @@ for i in range(45):
     left(2)
 
 
+# In[15]:
+
+
+from Game import *
+
+
+# In[24]:
+
+
+state=Board(4,5)
+for location in range(20):
+    print(location)
+    state[location]=1
+    print(state)
+    
+state
+
+
+# In[23]:
+
+
+for x in ['bob','fred',5,'sally']:
+    print("---")
+    print(x)
+    print("here")
+    print("----")
+    print()
+
+
+# In[21]:
+
+
+list(range(5))
+
+
+# In[31]:
+
+
+for c in range(2,5):
+    print(c)
+    for r in range(1,4):
+        print("\t",r)
+
+
+# In[29]:
+
+
+for c in range(2,5):
+    print(c)
+for r in range(1,4):
+    print("\t",r)
+
+
+# In[27]:
+
+
+state=Board(4,5)
+
+for c in range(2,5):
+    for r in range(1,40):
+
+        print(r,c)
+        state[r,c]=1
+        print(state)
+    
+state
+
+
+# In[33]:
+
+
+state=Board(4,5)
+
+for c in range(5):
+    for r in range(4):
+
+        state[r,c]=1
+    
+state
+
+
+# In[34]:
+
+
+update_state(state,1,10)
+
+
 # In[ ]:
 
 

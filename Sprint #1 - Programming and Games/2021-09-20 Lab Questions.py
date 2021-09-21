@@ -148,20 +148,21 @@ start
 end
 
 
-# In[19]:
+# In[2]:
 
 
 state=Board(5,3)
 state.show_locations()
 
 
-# In[20]:
+# In[9]:
 
 
-state.rc_from_index(10)
+r_start,c_start=state.rc_from_index(10)
+r_start,c_start
 
 
-# In[21]:
+# In[4]:
 
 
 state.index_from_rc(3,1)
@@ -171,6 +172,7 @@ state.index_from_rc(3,1)
 
 
 start,end = 1,2
+
 
 for start,end in [ 
     [1,2], [3,4], [5,10], [2,-1]
@@ -188,15 +190,23 @@ for start,end in [
 # In[ ]:
 
 
-start,end = 1,2
-moves=[]
-for start,end in [ 
-    [1,2], [3,4], [5,10], 
-                ]:
 
-    if state[start]==player and state[end]==0:
-        moves.append( [start,end] )
+if player==1:
+    moves=[]
+    for start,end in [ 
+        [1,2], [3,4], [5,10], 
+                    ]:
+
+        if state[start]==player and state[end]==0:
+            moves.append( [start,end] )
         
+
+
+# In[ ]:
+
+
+if state[0]==2 or state[1]==2:
+    return "win"
 
 
 # In[22]:
