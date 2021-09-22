@@ -1,19 +1,19 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[11]:
+# In[1]:
 
 
 get_ipython().run_line_magic('pylab', 'inline')
 
 
-# In[12]:
+# In[2]:
 
 
 from mplturtle import *
 
 
-# In[14]:
+# In[3]:
 
 
 reset()
@@ -23,10 +23,10 @@ for i in range(4):
     right(90)
 
 
-# In[ ]:
+# In[9]:
 
 
-
+animate(0,4)  # zero delay, and skip every 4 steps to make it faster
 
 
 # In[ ]:

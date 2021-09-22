@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[8]:
+# In[1]:
 
 
 from Game import *
@@ -9,7 +9,7 @@ from Game import *
 
 # ## Game functions
 
-# In[13]:
+# In[2]:
 
 
 def initial_state():
@@ -69,7 +69,7 @@ def win_status(state,player):
 
 # ## Agent Functions
 
-# In[14]:
+# In[3]:
 
 
 def human_move(state,player):
@@ -82,7 +82,24 @@ def human_move(state,player):
 human_agent=Agent(human_move)     
 
 
-# In[15]:
+# In[9]:
+
+
+state=initial_state()
+player=1
+moves=valid_moves(state,player)
+moves.remove(0)
+
+if not moves: # after removing zero, no moves left
+    return 0
+else:
+    return random.choice(moves)
+    
+
+moves
+
+
+# In[4]:
 
 
 def random_move(state,player):
@@ -96,7 +113,7 @@ random_agent=Agent(random_move)
 
 # ## Running the Game
 
-# In[16]:
+# In[5]:
 
 
 g=Game()

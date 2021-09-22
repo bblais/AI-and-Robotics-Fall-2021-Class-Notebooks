@@ -7,7 +7,7 @@
 from Game import *
 
 
-# In[41]:
+# In[2]:
 
 
 def initial_state():
@@ -15,7 +15,7 @@ def initial_state():
     return state
 
 
-# In[42]:
+# In[3]:
 
 
 initial_state()
@@ -73,21 +73,21 @@ state[0,1]
 
 # ## back to TTT
 
-# In[43]:
+# In[12]:
 
 
 def show_state(state):
     print(state)
 
 
-# In[44]:
+# In[13]:
 
 
 state=initial_state()
 show_state(state)
 
 
-# In[14]:
+# In[34]:
 
 
 def valid_moves(state,player):
@@ -103,14 +103,14 @@ def valid_moves(state,player):
     return moves
 
 
-# In[15]:
+# In[35]:
 
 
-state=Board(3,3)
+state=initial_state()
 valid_moves(state,1)
 
 
-# In[45]:
+# In[36]:
 
 
 state[2]=1
@@ -118,7 +118,7 @@ state[5]=2
 state
 
 
-# In[17]:
+# In[39]:
 
 
 valid_moves(state,1)
@@ -181,7 +181,7 @@ valid_moves(state,2)
 update_state(state,2,6)
 
 
-# In[28]:
+# In[26]:
 
 
 def win_status(state,player):
@@ -243,7 +243,7 @@ else:
 other_player
 
 
-# In[37]:
+# In[28]:
 
 
 def human_move(state,player):
@@ -257,20 +257,20 @@ def human_move(state,player):
     
 
 
-# In[33]:
+# In[ ]:
 
 
 state=initial_state()
-human_move(state,1)
+#human_move(state,1)
 
 
-# In[38]:
+# In[32]:
 
 
 human_agent=Agent(human_move)
 
 
-# In[40]:
+# In[33]:
 
 
 def random_move(state,player):
