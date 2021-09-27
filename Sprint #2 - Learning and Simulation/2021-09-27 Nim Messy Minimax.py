@@ -4,12 +4,30 @@
 # In[1]:
 
 
+import Game
+
+
+# In[2]:
+
+
+Game.__file__
+
+
+# In[3]:
+
+
 from Game import *
+
+
+# In[4]:
+
+
+import this
 
 
 # ## Game functions
 
-# In[2]:
+# In[5]:
 
 
 def initial_state(N=21):
@@ -43,7 +61,7 @@ def win_status(state,player):
 
 # ## Agent Functions
 
-# In[3]:
+# In[6]:
 
 
 def human_move(state,player):
@@ -52,7 +70,7 @@ def human_move(state,player):
 human_agent=Agent(human_move)    
 
 
-# In[4]:
+# In[7]:
 
 
 def random_move(state,player):
@@ -64,7 +82,7 @@ def random_move(state,player):
 random_agent=Agent(random_move)
 
 
-# In[5]:
+# In[8]:
 
 
 from Game.minimax import *
@@ -77,51 +95,49 @@ def minimax_move(state,player):
 minimax_agent=Agent(minimax_move)
 
 
+# In[9]:
+
+
+minimax_values(5,1)
+
+
+# In[10]:
+
+
+minimax_values(6,1)
+
+
+# In[11]:
+
+
+minimax_values(31,1)
+
+
 # ## Running the Game
 
-# In[6]:
+# In[12]:
+
+
+g=Game(N=21)
+g.run(random_agent,minimax_agent)
+
+
+# ## what happens if the game is too long?
+
+# In[13]:
 
 
 g=Game(N=31)
 g.run(random_agent,minimax_agent)
 
 
-# ## Long games -- set maxdepth and use heuristic
-
-# In[7]:
+# In[ ]:
 
 
-from Game.minimax import *
-def minimax_move(state,player):
-
-    values,moves=minimax_values(state,player,maxdepth=4,display=True)
-    return top_choice(moves,values)
 
 
-minimax_agent=Agent(minimax_move)
 
-
-# In[8]:
-
-
-def heuristic(state,player):
-    
-    # return a value between -1 and 1 (not inclusive)
-    # which is approximate value of the state
-    # positive = good for player
-    # negative = bad for player
-    
-    # odd numbers are generally bad for them
-    
-    if state%2 == 0:
-        value=-0.3
-    else:
-        value=0.3
-    
-    return value
-
-
-# In[9]:
+# In[17]:
 
 
 g=Game(N=31)
