@@ -251,6 +251,28 @@ ylabel('Percentage')
 legend()
 
 
+# In[22]:
+
+
+skittles_agent.T
+
+
+# In[23]:
+
+
+SaveTable(skittles_agent.T,"nim table.json")
+
+
+# In[25]:
+
+
+skittles_agent.learning=True
+g=Game(number_of_games=20,N=20)
+g.display=False
+results=g.run(minimax_agent,skittles_agent)
+results
+
+
 # In[ ]:
 
 
