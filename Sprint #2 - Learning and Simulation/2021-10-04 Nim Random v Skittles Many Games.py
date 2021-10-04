@@ -198,7 +198,7 @@ results.count(1),results.count(2)
 
 
 
-# In[13]:
+# In[29]:
 
 
 N_train=5
@@ -208,6 +208,9 @@ percentage_player1_wins=[]
 percentage_player2_wins=[]
 percentage_ties=[]
 total_number_of_games=[]
+
+skittles_agent.T=Table()  # makes an empty table
+
 
 current_game_number=0
 
@@ -232,14 +235,14 @@ for i in range(100):
     total_number_of_games.append(current_game_number)
 
 
-# In[17]:
+# In[30]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
 from matplotlib.pylab import figure,plot,legend,xlabel,ylabel
 
 
-# In[21]:
+# In[31]:
 
 
 figure(figsize=(8,6))
