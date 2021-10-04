@@ -79,13 +79,14 @@ minimax_agent=Agent(minimax_move)
 
 # ## Skittles Agent
 
-# In[13]:
+# In[18]:
 
 
 def skittles_move(state,player,info):
     T=info.T
     last_state=info.last_state
     last_action=info.last_action
+    learning=info.learning
     
     if state not in T:
         actions=valid_moves(state,player)
@@ -98,17 +99,18 @@ def skittles_move(state,player,info):
     if move is None:  
         
         # learn
-        if last_state:
-            T[last_state][last_action]-=1 # take away a skittle
-            if T[last_state][last_action]<0:
-                T[last_state][last_action]=0
+        if learning:
+            if last_state:
+                T[last_state][last_action]-=1 # take away a skittle
+                if T[last_state][last_action]<0:
+                    T[last_state][last_action]=0
     
         return random_move(state,player)
     else:
         return move
 
 
-# In[14]:
+# In[19]:
 
 
 def skittles_after(status,player,info):
@@ -117,87 +119,27 @@ def skittles_after(status,player,info):
     T=info.T
     last_state=info.last_state
     last_action=info.last_action
-
-    if status=='lose':  # only learn when you lose
-        T[last_state][last_action]-=1 # take away a skittle
-        if T[last_state][last_action]<0:
-            T[last_state][last_action]=0
-
-
-# In[15]:
-
-
-a=5
+    learning=info.learning
+    
+    if learning:
+        if status=='lose':  # only learn when you lose
+            T[last_state][last_action]-=1 # take away a skittle
+            if T[last_state][last_action]<0:
+                T[last_state][last_action]=0
 
 
-# In[16]:
-
-
-a=a-1
-print(a)
-
-
-# In[17]:
-
-
-a-=1
-print(a)
-
-
-# In[18]:
+# In[20]:
 
 
 skittles_agent=Agent(skittles_move)
 skittles_agent.post=skittles_after
 skittles_agent.T=Table()  # makes an empty table
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
+skittles_agent.learning=True
 
 
 # ## Running the Game
 
-# In[23]:
-
-
-g=Game()
-g.run(random_agent,skittles_agent)
-
-
-# In[24]:
-
-
-skittles_agent.T
-
-
-# In[32]:
+# In[21]:
 
 
 g=Game(number_of_games=20)
@@ -205,10 +147,50 @@ g.display=False
 g.run(random_agent,skittles_agent)
 
 
-# In[31]:
+# In[26]:
 
 
-skittles_agent.T
+N_train=5
+N_test=100
+iteration_count=0
+
+skittles_agent.T=Table()  # makes an empty table
+
+percentage_won=[]
+number_of_iterations=[]
+
+for i in range(80):
+
+    skittles_agent.learning=True
+    g=Game(number_of_games=N_train)
+    g.display=False
+    result=g.run(random_agent,skittles_agent)
+
+
+    # turn learning off to test
+    skittles_agent.learning=False
+    g=Game(number_of_games=N_test)
+    g.display=False
+    result=g.run(random_agent,skittles_agent)
+    iteration_count+=N_train
+
+    percentage_won.append(result.count(2)/N_test*100)
+    number_of_iterations.append(iteration_count)
+
+
+# In[27]:
+
+
+get_ipython().run_line_magic('matplotlib', 'inline')
+from pylab import plot,xlabel,ylabel,legend
+
+
+# In[28]:
+
+
+plot(number_of_iterations,percentage_won,'-o')
+xlabel('Number of Games')
+ylabel('Percentage Won')
 
 
 # In[ ]:
