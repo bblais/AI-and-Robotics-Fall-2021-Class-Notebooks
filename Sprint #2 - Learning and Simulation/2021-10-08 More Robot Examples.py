@@ -173,6 +173,101 @@ run_sim(env,act,
        )
 
 
+# ## Behaviors
+
+# In[63]:
+
+
+def build(robot):
+    Disk(robot,x=3,y=5,radius=.5,name='bob')
+    
+
+
+# In[64]:
+
+
+def act(t,robot):
+    distance=robot['bob'].read_distance()
+    
+    if distance<5:
+        robot['bob'].F=-10
+    else:
+        robot['bob'].F=10
+        
+
+
+# In[65]:
+
+
+env=FrictionEnvironment(24,24)
+robot=Robot(env)
+build(robot)
+
+Box(env,x=10,y=10,width=5,height=1)
+Box(env,x=10,y=16,width=1,height=5)
+Box(env,x=20,y=5,width=2,height=2)
+
+
+run_sim(env,act,
+        figure_width=6,
+        total_time=80,  # seconds
+        dt_display=.1,  # make this larger for a faster display
+       )
+
+
+# In[67]:
+
+
+def go_forward(t,robot):
+    robot['bob'].F=10
+    return True
+
+def go_backward(t,robot):
+    robot['bob'].F=-10
+    return True
+
+
+# In[68]:
+
+
+def until_close(t,robot):
+    distance=robot['bob'].read_distance()
+    
+    if distance<5:
+        return True
+    
+
+
+# In[71]:
+
+
+def until_far(t,robot):
+    distance=robot['bob'].read_distance()
+    
+    if distance>10:
+        return True
+    
+
+
+# In[72]:
+
+
+env=FrictionEnvironment(24,24)
+robot=Robot(env)
+build(robot)
+
+Box(env,x=10,y=10,width=5,height=1)
+Box(env,x=10,y=16,width=1,height=5)
+Box(env,x=20,y=5,width=2,height=2)
+
+
+run_sim(env,[go_forward,until_close,go_backward,until_far],
+        figure_width=6,
+        total_time=80,  # seconds
+        dt_display=.1,  # make this larger for a faster display
+       )
+
+
 # In[ ]:
 
 
