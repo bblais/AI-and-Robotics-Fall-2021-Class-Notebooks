@@ -82,7 +82,7 @@ def human_move(state,player):
 human_agent=Agent(human_move)     
 
 
-# In[11]:
+# In[4]:
 
 
 def random_move(state,player):
@@ -94,7 +94,7 @@ def random_move(state,player):
 random_agent=Agent(random_move)
 
 
-# In[12]:
+# In[5]:
 
 
 from Game.minimax import *
@@ -107,21 +107,60 @@ def minimax_move(state,player):
 minimax_agent=Agent(minimax_move)
 
 
-# ## Running the Game
+# In[7]:
 
-# In[15]:
+
+player=1
+state=initial_state()
+minimax_values(state,player,display=True)
+
+
+# In[8]:
 
 
 g=Game()
-g.run(random_agent,minimax_agent)
-
-
-# In[16]:
-
-
-g=Game()
+g.display=False
 g.run(minimax_agent,random_agent)
 
+
+# In[9]:
+
+
+get_ipython().run_line_magic('pylab', 'inline')
+
+
+# In[10]:
+
+
+T=[2.14,.112,.0058,.00038,5.89e-5]
+
+
+# In[11]:
+
+
+plot(T,'-o')
+
+
+# In[12]:
+
+
+plot(log10(T),'-o')
+
+
+# the log plot has a slope of about -1.  A little closer is,
+
+# In[14]:
+
+
+log10(T)[3]/3
+
+
+# so the equation for the time would be,
+# 
+# $$
+# T=2.14\times 10^{-1.14 \cdot {\rm move}}
+# $$
+# 
 
 # In[ ]:
 
