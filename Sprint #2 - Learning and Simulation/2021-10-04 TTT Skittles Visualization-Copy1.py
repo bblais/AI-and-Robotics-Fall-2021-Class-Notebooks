@@ -212,14 +212,6 @@ xlabel('Number of Games')
 ylabel('Percentage Won')
 
 
-# In[1]:
-
-
-skittles_agent.learning=False
-g=Game(number_of_games=1)
-result=g.run(random_agent,skittles_agent)
-
-
 # In[ ]:
 
 
