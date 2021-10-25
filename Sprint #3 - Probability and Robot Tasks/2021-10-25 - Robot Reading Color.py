@@ -28,12 +28,11 @@ def build(robot):
     connect(disk1,box2,"distance")
 
 
-# In[8]:
+# In[10]:
 
 
 def act(t,robot):
 
-    distance=robot['center'].read_distance()
     color=robot['center'].read_color()
     
     if t<0.5:
@@ -43,12 +42,10 @@ def act(t,robot):
         robot['right'].F=0
         robot['left'].F=0
 
-    robot.storage += t,distance
-
     robot.message=color
 
 
-# In[9]:
+# In[11]:
 
 
 env=Environment(24,24)
@@ -76,7 +73,7 @@ run_sim(env,act,
        )
 
 
-# In[13]:
+# In[8]:
 
 
 env=Environment(image='images/stripes2.jpg')
@@ -90,7 +87,7 @@ run_sim(env,act,
        )
 
 
-# In[15]:
+# In[16]:
 
 
 env=Environment(image='images/stripes3.png')
