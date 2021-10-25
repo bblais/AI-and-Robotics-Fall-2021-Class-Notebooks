@@ -101,6 +101,94 @@ run_sim(env,act,
        )
 
 
+# In[17]:
+
+
+color=robot['center'].read_color()
+
+
+# In[18]:
+
+
+color
+
+
+# In[19]:
+
+
+r,g,b,a=color
+
+
+# In[20]:
+
+
+r
+
+
+# In[23]:
+
+
+g
+
+
+# In[24]:
+
+
+b
+
+
+# In[25]:
+
+
+a
+
+
+# In[26]:
+
+
+if b>.75 and g<0.1 and r<.1:
+    print("blue!")
+
+
+# In[ ]:
+
+
+
+
+
+# In[38]:
+
+
+def act(t,robot):
+
+    color=robot['center'].read_color()
+    r,g,b,a=color  # assuming I'm reading a png
+    
+    if b>.75 and g<0.4 and r<.3:  # blue!
+        robot['right'].F=-1
+        robot['left'].F=-1
+    else:
+        robot['right'].F=.2
+        robot['left'].F=.2
+
+
+    robot.message=color
+
+
+# In[39]:
+
+
+env=Environment(image='images/colors.png')
+robot=Robot(env)
+build(robot)
+
+run_sim(env,act,
+        figure_width=6,
+       total_time=50,
+       dt_display=0.3,  # make this larger for a faster display
+       )
+
+
 # In[ ]:
 
 
