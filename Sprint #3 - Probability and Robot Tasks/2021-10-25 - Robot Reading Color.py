@@ -150,21 +150,37 @@ if b>.75 and g<0.1 and r<.1:
     print("blue!")
 
 
+# In[41]:
+
+
+def isblue(r,g,b):
+    if b>.75 and g<0.4 and r<.3:  # blue!
+        return True
+    else:
+        return False
+
+
 # In[ ]:
 
 
+def online(r,g,b):
+    if r<.2 and g<.2 and b<.2:
+        return True
+    else:
+        return False
 
 
-
-# In[38]:
+# In[42]:
 
 
 def act(t,robot):
 
     color=robot['center'].read_color()
     r,g,b,a=color  # assuming I'm reading a png
+    # r,g,b=color  # assuming I'm reading a jpg
     
-    if b>.75 and g<0.4 and r<.3:  # blue!
+    
+    if isblue(r,g,b):
         robot['right'].F=-1
         robot['left'].F=-1
     else:
@@ -175,7 +191,54 @@ def act(t,robot):
     robot.message=color
 
 
-# In[39]:
+# In[43]:
+
+
+def act(t,robot):
+
+    color_left=robot['left'].read_color()
+    color_right=robot['right'].read_color()
+    rl,gl,bl,al=color_left  # assuming I'm reading a png
+    rr,gr,br,ar=color_right  # assuming I'm reading a png
+    # r,g,b=color  # assuming I'm reading a jpg
+    
+    
+    if isblue(rl,gl,bl) or isblue(rr,gr,br):
+        robot['right'].F=-1
+        robot['left'].F=-1
+    else:
+        robot['right'].F=.2
+        robot['left'].F=.2
+
+
+    robot.message=color
+
+
+# In[ ]:
+
+
+def act(t,robot):
+
+    color_left=robot['left'].read_color()
+    color_right=robot['right'].read_color()
+    rl,gl,bl,al=color_left  # assuming I'm reading a png
+    rr,gr,br,ar=color_right  # assuming I'm reading a png
+    # r,g,b=color  # assuming I'm reading a jpg
+    
+    
+    if online(rl,gl,bl) and not online(rr,gr,br):
+        robot['right'].F=-1
+        robot['left'].F=-1
+    elif not online(rl,gl,bl) and online(rr,gr,br):
+    else:
+        robot['right'].F=.2
+        robot['left'].F=.2
+
+
+    robot.message=color
+
+
+# In[44]:
 
 
 env=Environment(image='images/colors.png')

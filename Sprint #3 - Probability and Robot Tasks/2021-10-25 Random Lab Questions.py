@@ -30,6 +30,20 @@ state.pieces=['.','X','O','K','R']
 state
 
 
+# In[7]:
+
+
+r,c=state.rc_from_index(7)
+r,c
+
+
+# In[8]:
+
+
+idx=state.index_from_rc(1,3)
+idx
+
+
 # In[ ]:
 
 
