@@ -25,11 +25,16 @@ from RobotSim373.utils import pptx2build
 pptx2build('test robot drawing.pptx')
 
 
-# In[55]:
+# In[68]:
 
 
-def build(robot):
-    box1=Box(robot,x=2.90,y=8.57,angle=311.24,width=1.29,height=3.28,name="box1")
+pptx2build('/Users/bblais/Downloads/Robot Drawing.pptx')
+
+
+# In[63]:
+
+
+def build(ro/Users/bblais/Downloads/Robot Drawing.pptx2.90,y=8.57,angle=311.24,width=1.29,height=3.28,name="box1")
     disk2=Disk(robot,x=4.06,y=6.40,angle=0.00,radius=0.86,name="disk2")
     box3=Box(robot,x=7.32,y=10.14,angle=311.24,width=1.29,height=3.28,name="box3")
     box4=Box(robot,x=5.72,y=4.91,angle=311.24,width=1.29,height=3.28,name="box4")
@@ -37,7 +42,7 @@ def build(robot):
     connect(disk2,box3,'weld')
 
 
-# In[59]:
+# In[64]:
 
 
 def act(t,robot):
@@ -50,7 +55,7 @@ def act(t,robot):
 
 
 
-# In[60]:
+# In[65]:
 
 
 env=Environment(24,24)
@@ -58,7 +63,7 @@ robot=Robot(env)
 build(robot)
 
 
-# In[61]:
+# In[66]:
 
 
 run_sim(env,act,
