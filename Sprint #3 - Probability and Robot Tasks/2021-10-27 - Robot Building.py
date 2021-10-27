@@ -19,13 +19,13 @@ from RobotSim373 import *
 from RobotSim373.utils import pptx2build
 
 
-# In[54]:
+# In[58]:
 
 
 pptx2build('test robot drawing.pptx')
 
 
-# In[51]:
+# In[55]:
 
 
 def build(robot):
@@ -37,19 +37,20 @@ def build(robot):
     connect(disk2,box3,'weld')
 
 
+# In[59]:
+
+
+def act(t,robot):
+    robot['box1'].F=.1
+
+
 # In[ ]:
 
 
 
 
 
-# In[ ]:
-
-
-
-
-
-# In[52]:
+# In[60]:
 
 
 env=Environment(24,24)
@@ -57,7 +58,7 @@ robot=Robot(env)
 build(robot)
 
 
-# In[53]:
+# In[61]:
 
 
 run_sim(env,act,
