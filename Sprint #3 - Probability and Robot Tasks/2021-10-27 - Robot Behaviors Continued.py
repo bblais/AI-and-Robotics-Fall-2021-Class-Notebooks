@@ -57,7 +57,7 @@ def act(t,robot):
 
 # ## Do the finite state machine
 # 
-# ### test each piece individually -- start with a couple of the tasks for the approach behavior
+# ### test each action individually -- start with a couple of the tasks for the approach behavior
 
 # In[5]:
 
@@ -93,7 +93,7 @@ def until_black(t,robot):
 
 
 
-# In[22]:
+# In[7]:
 
 
 def monitor(t,robot):
@@ -101,7 +101,7 @@ def monitor(t,robot):
     robot.message='%.2f %.2f %.2f %.2f' % (r,g,b,a)
 
 
-# In[23]:
+# In[8]:
 
 
 state_machine_approach=StateMachine(
@@ -187,14 +187,14 @@ run_sim(env,robot.controller,
 # 
 # Make sure we start inside the track to test this one, so I modify the build function
 
-# In[13]:
+# In[16]:
 
 
 def build(robot):
     box=Box(robot,x=8,y=12,name="sally")
 
 
-# In[19]:
+# In[17]:
 
 
 def reverse_for_a_bit(t,robot):
@@ -210,7 +210,7 @@ def turn_for_a_bit(t,robot):
         return True    
 
 
-# In[24]:
+# In[18]:
 
 
 state_machine_wander=StateMachine(
@@ -221,7 +221,7 @@ state_machine_wander=StateMachine(
 )
 
 
-# In[25]:
+# In[19]:
 
 
 env=FrictionEnvironment(image="images/track.png")
@@ -264,7 +264,7 @@ state_machine_wander=StateMachine(
 state_machine_approach=StateMachine(
     (forward,'until_black'),
     (until_black,'until_white'),
-    (until_white,'state_machine_wander'),)
+    (until_white,'state_machine_wander'),
     
 )
 
