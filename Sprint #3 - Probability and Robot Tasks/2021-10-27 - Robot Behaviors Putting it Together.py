@@ -44,30 +44,12 @@ from RobotSim373 import *
 # In[3]:
 
 
-def build(robot):
-    box=Box(robot,x=3,y=12,name="sally")
-
-
-# In[4]:
-
-
-def act(t,robot):
-    pass
-
-
-# ## Do the finite state machine
-# 
-# ### test each action individually -- start with a couple of the tasks for the approach behavior
-
-# In[5]:
-
-
 def forward(t,robot):
     robot['sally'].F=10
     return True
 
 
-# In[6]:
+# In[4]:
 
 
 def until_black(t,robot):
@@ -81,61 +63,15 @@ def until_black(t,robot):
         return False
 
 
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[7]:
+# In[11]:
 
 
 def monitor(t,robot):
     r,g,b,a=robot['sally'].read_color()
-    robot.message='%.2f %.2f %.2f %.2f' % (r,g,b,a)
+    robot.message='%.2f %.2f %.2f %.2f %s' % (r,g,b,a,robot.controller.current_state)
 
 
-# In[8]:
-
-
-state_machine_approach=StateMachine(
-    (forward,'until_black'),
-    (until_black,'_end_simulation'),
-)
-
-
-# In[ ]:
-
-
-
-
-
-# In[9]:
-
-
-env=FrictionEnvironment(image="images/track.png")
-robot=Robot(env)
-build(robot)
-robot.controller=Controller(state_machine_approach)
-robot.controller.monitor=monitor
-
-
-run_sim(env,robot.controller,
-        figure_width=6,
-       total_time=13,
-       dt_display=0.3,  # make this larger for a faster display
-       )
-
-
-# ### Do a few more behaviors
-
-# In[10]:
+# In[12]:
 
 
 def until_white(t,robot):
@@ -153,52 +89,7 @@ def until_white(t,robot):
         return False
 
 
-# In[ ]:
-
-
-
-
-
-# In[11]:
-
-
-state_machine_approach=StateMachine(
-    (forward,'until_black'),
-    (until_black,'until_white'),
-    (until_white,'_end_simulation'),
-    
-)
-
-
-# In[12]:
-
-
-env=FrictionEnvironment(image="images/track.png")
-robot=Robot(env)
-build(robot)
-robot.controller=Controller(state_machine_approach)
-robot.controller.monitor=monitor
-
-
-run_sim(env,robot.controller,
-        figure_width=6,
-       total_time=13,
-       dt_display=0.3,  # make this larger for a faster display
-       )
-
-
-# ### now the wander behavior
-# 
-# Make sure we start inside the track to test this one, so I modify the build function
-
-# In[13]:
-
-
-def build(robot):
-    box=Box(robot,x=8,y=12,name="sally")
-
-
-# In[14]:
+# In[39]:
 
 
 def reverse_for_a_bit(t,robot):
@@ -208,52 +99,22 @@ def reverse_for_a_bit(t,robot):
         return True
     
 def turn_for_a_bit(t,robot):
-    robot['sally'].τ=1
+    if robot['sally'].τ==0:
+        robot['sally'].τ=random.choice([-1.0,1.0])
+        
     if t>1:
         robot['sally'].τ=0
         return True    
 
 
-# In[15]:
-
-
-state_machine_wander=StateMachine(
-    (forward,'until_black'),
-    (until_black,'reverse_for_a_bit'),
-    (reverse_for_a_bit,'turn_for_a_bit'),
-    (turn_for_a_bit,'forward'),
-)
-
-
-# In[16]:
-
-
-env=FrictionEnvironment(image="images/track.png")
-robot=Robot(env)
-build(robot)
-robot.controller=Controller(state_machine_wander)
-robot.controller.monitor=monitor
-
-
-run_sim(env,robot.controller,
-        figure_width=6,
-       total_time=13,
-       dt_display=0.3,  # make this larger for a faster display
-       )
-
-
-# ### Putting it together
-# 
-# back to the original location
-
-# In[17]:
+# In[40]:
 
 
 def build(robot):
     box=Box(robot,x=3,y=12,name="sally")
 
 
-# In[20]:
+# In[41]:
 
 
 state_machine_wander=StateMachine(
@@ -268,11 +129,11 @@ state_machine_wander=StateMachine(
 state_machine_approach=StateMachine(
     (forward,'until_black'),
     (until_black,'until_white'),
-    (until_white,state_machine_wander),  # switch to another statemachine entirely
+    (until_white,state_machine_wander),
 )
 
 
-# In[21]:
+# In[42]:
 
 
 env=FrictionEnvironment(image="images/track.png")
@@ -284,9 +145,15 @@ robot.controller.monitor=monitor
 
 run_sim(env,robot.controller,
         figure_width=6,
-       total_time=13,
+       total_time=30,
        dt_display=0.3,  # make this larger for a faster display
        )
+
+
+# In[38]:
+
+
+random.choice([-1,1])
 
 
 # In[ ]:
