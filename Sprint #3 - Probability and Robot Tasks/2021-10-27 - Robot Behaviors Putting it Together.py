@@ -63,7 +63,7 @@ def until_black(t,robot):
         return False
 
 
-# In[11]:
+# In[5]:
 
 
 def monitor(t,robot):
@@ -71,7 +71,7 @@ def monitor(t,robot):
     robot.message='%.2f %.2f %.2f %.2f %s' % (r,g,b,a,robot.controller.current_state)
 
 
-# In[12]:
+# In[6]:
 
 
 def until_white(t,robot):
@@ -89,7 +89,7 @@ def until_white(t,robot):
         return False
 
 
-# In[39]:
+# In[7]:
 
 
 def reverse_for_a_bit(t,robot):
@@ -107,14 +107,14 @@ def turn_for_a_bit(t,robot):
         return True    
 
 
-# In[40]:
+# In[8]:
 
 
 def build(robot):
     box=Box(robot,x=3,y=12,name="sally")
 
 
-# In[41]:
+# In[9]:
 
 
 state_machine_wander=StateMachine(
@@ -133,7 +133,7 @@ state_machine_approach=StateMachine(
 )
 
 
-# In[42]:
+# In[10]:
 
 
 env=FrictionEnvironment(image="images/track.png")
