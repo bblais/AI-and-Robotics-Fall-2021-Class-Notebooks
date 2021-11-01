@@ -3,23 +3,26 @@
 
 # ![image.png](attachment:c9e6e507-f00d-4ab3-8e1c-031502657bbd.png)
 
-# In[1]:
+# In[39]:
 
 
 from functools import lru_cache
+import sys
+sys.setrecursionlimit(25000)
 
 
-# In[2]:
+# In[49]:
 
 
-@lru_cache
+@lru_cache(maxsize=None)
 def P(i,j,k,action=None):
     # i = player's score
     # j = opponent's score
     # k = turn score
     # action = "roll", "hold", None
     
-    goal=20
+    progressive=True
+    goal=100
     
     if action is None:
         if i+k>=goal:
@@ -28,15 +31,22 @@ def P(i,j,k,action=None):
         if j>=goal:
             return 0.0  # certain I've lost
         
-        return max(P(i,j,k,"hold"),P(i,j,k,"roll"))
+        return max(P(i,j,k,"roll"),P(i,j,k,"hold"))
     
     if action == "hold":  # may have to do "progressive Pig" here
-        if k==0:  # progressive pig
+        if k==0 and progressive:  # progressive pig
             k=1
+            
         return 1-P(j,i+k,0)
     elif action == "roll":
         prob=1/6*P(i,j,k+2) + 1/6*P(i,j,k+3) + 1/6*P(i,j,k+4) + 1/6*P(i,j,k+5) + 1/6*P(i,j,k+6)
-        prob+= 1/6*(1-P(j,i+1,0))  # progressive pig
+        
+        if progressive:  # progressive pig
+            add=1
+        else:
+            add=0
+
+        prob+= 1/6*(1-P(j,i+add,0))  # progressive pig
         return prob
         
     else:
@@ -44,77 +54,89 @@ def P(i,j,k,action=None):
     
 
 
-# In[4]:
+# In[50]:
 
 
-P(0,0,0,"roll")
+P(99,99,0)
 
 
-# In[ ]:
+# In[51]:
 
 
-P(5,0,0,"hold")
+get_ipython().run_line_magic('pylab', 'inline')
 
 
-# In[17]:
+# In[53]:
 
 
-import sys
-sys.setrecursionlimit(25000)
+im=zeros((100,100))
 
 
-# In[20]:
+# In[55]:
 
 
-@lru_cache(maxsize=None)
-def P(i,j,k,action=None):
-    # i = player's score
-    # j = opponent's score
-    # k = turn score
+for i in range(100):
+    for j in range(100):
+        im[i,j]=P(i,j,0)
+
+
+# In[57]:
+
+
+imshow(im)
+colorbar()
+
+
+# In[59]:
+
+
+from Game import Storage
+
+
+# In[58]:
+
+
+P(0,0,0)
+
+
+# In[70]:
+
+
+S=Storage()
+for k in range(30):
+    S+=k,P(0,0,k,"roll"),P(0,0,k,"hold")
     
-    goal=100
+k,Pr,Ph=S.arrays()
+
+
+# In[72]:
+
+
+plot(k,Pr,'-o',label="roll")
+plot(k,Ph,'-s',label="hold")
+xlabel("turn total")
+ylabel('probability of a win with 0,0')
+legend()
+
+
+# In[73]:
+
+
+S=Storage()
+for k in range(30):
+    S+=k,P(90,90,k,"roll"),P(90,90,k,"hold")
     
-
-    if action is None:
-        if i+k>=goal:
-            return 1.0
-        if j>=goal:
-            return 0.0
-        
-        return max(P(i,j,k,"roll"),P(i,j,k,"hold"))
-    
-    if action=="hold":
-        reward=max(k,1)  # add one for a hold to move the game along, otherwise we have infinite games
-        return 1-P(j,i+reward,0)
-    
-    if action=="roll":
-        prob=1/6*P(i,j,k+2) + 1/6*P(i,j,k+3) + 1/6*P(i,j,k+4) + 1/6*P(i,j,k+5) + 1/6*P(i,j,k+6)
-
-        # except to roll a 1
-        prob+=1/6*(1-P(j,i+1,0))
-        
-        return prob
-    
-    raise ValueError("you can't get there from here:" + str(action))
+k,Pr,Ph=S.arrays()
 
 
-# In[21]:
+# In[74]:
 
 
-P(0,0,0,"hold"),P(0,0,0,"roll")
-
-
-# In[26]:
-
-
-turn_score=18
-P(8,0,turn_score,"hold"),P(8,0,turn_score,"roll")
-
-
-# In[14]:
-
-
-P(17,12,0,"hold"),P(17,12,0,"roll")
+plot(k,Pr,'-o',label="roll")
+plot(k,Ph,'-s',label="hold")
+xlabel("turn total")
+ylabel('probability of a win with 90,90')
+legend()
 
 
 # In[ ]:
