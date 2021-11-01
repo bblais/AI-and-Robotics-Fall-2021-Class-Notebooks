@@ -3,7 +3,7 @@
 
 # ![image.png](attachment:c9e6e507-f00d-4ab3-8e1c-031502657bbd.png)
 
-# In[39]:
+# In[1]:
 
 
 from functools import lru_cache
@@ -11,7 +11,7 @@ import sys
 sys.setrecursionlimit(25000)
 
 
-# In[49]:
+# In[2]:
 
 
 @lru_cache(maxsize=None)
@@ -54,25 +54,25 @@ def P(i,j,k,action=None):
     
 
 
-# In[50]:
+# In[3]:
 
 
 P(99,99,0)
 
 
-# In[51]:
+# In[4]:
 
 
 get_ipython().run_line_magic('pylab', 'inline')
 
 
-# In[53]:
+# In[5]:
 
 
 im=zeros((100,100))
 
 
-# In[55]:
+# In[6]:
 
 
 for i in range(100):
@@ -80,10 +80,12 @@ for i in range(100):
         im[i,j]=P(i,j,0)
 
 
-# In[57]:
+# In[7]:
 
 
 imshow(im)
+ylabel('my score')
+xlabel('opp score')
 colorbar()
 
 
