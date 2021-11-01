@@ -135,6 +135,33 @@ else:
 total
 
 
+# In[39]:
+
+
+repeat=True
+while repeat:
+
+    repeat=False
+    dice=random.randint(1,6)
+    print(dice)
+    if dice==1:
+        pass
+    elif dice==2:
+        pass
+    elif dice==3:
+        repeat=True
+        
+    else:
+        pass
+    
+
+
+# In[ ]:
+
+
+
+
+
 # In[ ]:
 
 
