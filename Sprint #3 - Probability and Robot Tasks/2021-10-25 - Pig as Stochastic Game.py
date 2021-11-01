@@ -10,40 +10,40 @@
 # - "hold"
 #     - turn total gets added to the players total, next turn
 
-# In[1]:
+# In[7]:
 
 
 from Game import *
 
 
-# In[2]:
+# In[27]:
 
 
 def valid_moves(state,player):
     return ["hold","roll"]
 
 def initial_state():
-    
-    # player 1's total, player 2's total, turn total
-    return [0,0,0]
+    # player 1's total, player 2's total, turn total, last dice roll
+    return [0,0,0,0]
 
 
-# In[3]:
+# In[28]:
 
 
 def show_state(state):
     print("Player 1's total is",state[0])
     print("Player 2's total is",state[1])    
+    print("Last dice roll as ",state[3])
     print("The turn total is",state[2])
 
 
-# In[4]:
+# In[29]:
 
 
 def update_state(state,player,move):
     new_state=state
     
-    total1,total2,turn_total=state
+    total1,total2,turn_total,last_dice=state
     
     if move=="hold":
         # state is [player 1's total, player 2's total, turn total]
@@ -55,11 +55,10 @@ def update_state(state,player,move):
             
         new_state[2]=0  # turn total back to zero
         
-        
+        state[3]=0
     else:  # roll
     
         dice=random.randint(1,6)  # generates a random number between 1 and 6
-        print("dice",dice)
         
         if dice==1:
             
@@ -70,17 +69,18 @@ def update_state(state,player,move):
             new_state[2]+=dice  # turn total 
     
     
+        state[3]=dice
     return new_state
     
 
 
-# In[5]:
+# In[30]:
 
 
 def win_status(state,player):
     
     max_score=21
-    total1,total2,turn_total=state
+    total1,total2,turn_total,last_dice=state
     
     if player==1:        
         if total1+turn_total>=max_score:
@@ -91,11 +91,11 @@ def win_status(state,player):
     
 
 
-# In[6]:
+# In[31]:
 
 
 def repeat_move(state,player,move):
-    turn_total=state[2]
+    total1,total2,turn_total,last_dice=state
     
     if turn_total>0:
         return True
@@ -104,7 +104,7 @@ def repeat_move(state,player,move):
     
 
 
-# In[7]:
+# In[32]:
 
 
 def human_move(state,player):
@@ -119,7 +119,7 @@ def human_move(state,player):
 human_agent=Agent(human_move)
 
 
-# In[8]:
+# In[33]:
 
 
 def random_move(state,player):
@@ -129,11 +129,17 @@ def random_move(state,player):
 random_agent=Agent(random_move)
 
 
-# In[10]:
+# In[ ]:
 
 
 g=Game()
 g.run(human_agent,random_agent)
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
