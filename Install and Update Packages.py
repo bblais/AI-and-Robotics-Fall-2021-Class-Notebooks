@@ -3,10 +3,10 @@
 
 # ## Sprint #1
 
-# In[1]:
+# In[2]:
 
 
-get_ipython().system('pip install "git+git://github.com/bblais/Game" --upgrade')
+get_ipython().system('pip install "git+https://github.com/bblais/Game" --upgrade')
 
 
 # In[2]:
@@ -26,7 +26,7 @@ get_ipython().system('pip install box2d')
 # In[5]:
 
 
-get_ipython().system('pip install "git+git://github.com/bblais/RobotSim373" --upgrade')
+get_ipython().system('pip install "git+https://github.com/bblais/RobotSim373" --upgrade')
 
 
 # ## Sprint #3
@@ -48,7 +48,7 @@ get_ipython().system('pip install scikit-learn')
 # In[1]:
 
 
-get_ipython().system('pip install "git+git://github.com/bblais/classy" --upgrade')
+get_ipython().system('pip install "git+https://github.com/bblais/classy" --upgrade')
 
 
 # ## Sprint #5
@@ -56,7 +56,7 @@ get_ipython().system('pip install "git+git://github.com/bblais/classy" --upgrade
 # In[2]:
 
 
-get_ipython().system('pip install "git+git://github.com/bblais/NumpyNet" --upgrade')
+get_ipython().system('pip install "git+https://github.com/bblais/NumpyNet" --upgrade')
 
 
 # In[3]:
