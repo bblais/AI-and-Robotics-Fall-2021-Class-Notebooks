@@ -13,15 +13,15 @@ get_ipython().run_line_magic('pylab', 'inline')
 from RobotSim373 import *
 
 
-# In[29]:
+# In[37]:
 
 
 def build(robot):
     R=.5
     r=R/5
     
-    x=2
-    y=2
+    x=15
+    y=17
     angle=0
     disk_center=Disk(robot,x,y,radius=R,angle=angle,name='center')
 
@@ -36,8 +36,8 @@ def build(robot):
 
     connect(disk_center,disks,'weld')
 
-    left=Box(robot,x=x-2,y=2,width=.1,height=3,name="left")
-    right=Box(robot,x=x+2,y=2,width=.1,height=3,name="right")
+    left=Box(robot,x=x-2,y=y,width=.1,height=3,name="left")
+    right=Box(robot,x=x+2,y=y,width=.1,height=3,name="right")
     connect(disk_center,left,'weld')    
     connect(disk_center,right,'weld')    
     
@@ -46,7 +46,7 @@ def build(robot):
     robot.distances=[-1]*len(disks)
 
 
-# In[30]:
+# In[38]:
 
 
 def forward(t,robot):
@@ -57,7 +57,7 @@ def forward(t,robot):
     return True
 
 
-# In[31]:
+# In[39]:
 
 
 def up(t,robot):
@@ -68,14 +68,14 @@ def up(t,robot):
     return True
 
 
-# In[32]:
+# In[40]:
 
 
 def monitor(t,robot):
     robot.message=t
 
 
-# In[33]:
+# In[41]:
 
 
 state_machine=StateMachine(
@@ -84,7 +84,7 @@ state_machine=StateMachine(
 
 
 
-# In[35]:
+# In[44]:
 
 
 env=FrictionEnvironment(24,24)
