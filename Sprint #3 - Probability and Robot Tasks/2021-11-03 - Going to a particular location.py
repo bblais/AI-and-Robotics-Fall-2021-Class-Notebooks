@@ -41,7 +41,7 @@ def build(robot):
     robot.distances=[-1]*len(disks)
 
 
-# In[5]:
+# In[4]:
 
 
 def right(t,robot):
@@ -73,7 +73,7 @@ def left(t,robot):
     return True
 
 
-# In[6]:
+# In[5]:
 
 
 def until_right_wall(t,robot):
@@ -102,7 +102,7 @@ def until_left_wall(t,robot):
         return True        
 
 
-# In[15]:
+# In[6]:
 
 
 def until_target_x(t,robot):
@@ -122,14 +122,14 @@ def until_target_y(t,robot):
 
 
 
-# In[16]:
+# In[7]:
 
 
 def monitor(t,robot):
     robot.message=t,robot.controller.current_state
 
 
-# In[17]:
+# In[8]:
 
 
 state_machine=StateMachine(
@@ -140,7 +140,7 @@ state_machine=StateMachine(
 )
 
 
-# In[18]:
+# In[10]:
 
 
 env=FrictionEnvironment(24,24)
@@ -149,7 +149,7 @@ build(robot)
 robot.controller=Controller(state_machine)
 robot.controller.monitor=monitor
 
-Box(env,x=10,y=10)
+Box(env,x=12,y=10)
 
 robot.target_x=15
 robot.target_y=17
