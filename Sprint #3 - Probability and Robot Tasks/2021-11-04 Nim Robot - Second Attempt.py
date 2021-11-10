@@ -143,10 +143,16 @@ def read_distances(t,robot):
 
 
 def set_move(t,robot):
+    from Game import Board 
+    
     count=0
     for distance in robot.box_distances:
         if distance<20:
             count+=1
+            
+            
+    state=Board(1,count)
+    print(state)
             
     robot.count=count
     robot.move=(count-1)%4
@@ -225,6 +231,12 @@ def until_turn_over(t,robot):
         return "right"
 
 
+# In[1]:
+
+
+
+
+
 # In[7]:
 
 
@@ -240,7 +252,10 @@ state_machine=StateMachine(
 # In[ ]:
 
 
-
+def get_human_input(t,robot):
+    move=input("give me a move")
+    robot.move=move
+    return True
 
 
 # In[ ]:
