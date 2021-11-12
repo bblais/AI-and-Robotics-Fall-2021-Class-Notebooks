@@ -115,7 +115,7 @@ Q2=LoadTable("../Sprint #2 - Learning and Simulation/2021-10-18 TTT Q2.json")
 from RobotSim373 import *
 
 
-# In[40]:
+# In[8]:
 
 
 def build(robot,x=1,y=2,name=None):
@@ -144,7 +144,7 @@ def build(robot,x=1,y=2,name=None):
       
 
 
-# In[41]:
+# In[9]:
 
 
 def nothing(t,robot):
@@ -176,7 +176,7 @@ def turn_purple(t,robot):
 
 # ## Set up board, size of pieces, location of pieces
 
-# In[42]:
+# In[10]:
 
 
 state_machine=StateMachine(
@@ -200,7 +200,7 @@ def pieceO(env,x,y):
     
 
 
-# In[43]:
+# In[11]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -226,7 +226,7 @@ run_sim(env,robot.controller,
 
 # ## Set up sensor array to detect pieces
 
-# In[44]:
+# In[12]:
 
 
 def build(robot,name=None):
@@ -316,7 +316,7 @@ def build(robot,name=None):
         
 
 
-# In[46]:
+# In[13]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -342,7 +342,7 @@ run_sim(env,robot.controller,
 
 # ## Read the distances in upper right square, as an example
 
-# In[50]:
+# In[14]:
 
 
 def read_NE_distance(t,act):
@@ -368,7 +368,7 @@ def read_NE_distance(t,act):
 
 
 
-# In[51]:
+# In[15]:
 
 
 state_machine=StateMachine(
@@ -376,7 +376,7 @@ state_machine=StateMachine(
 )
 
 
-# In[52]:
+# In[16]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -400,7 +400,7 @@ run_sim(env,robot.controller,
        )
 
 
-# In[53]:
+# In[17]:
 
 
 robot.distances
@@ -408,7 +408,7 @@ robot.distances
 
 # ## now read the middle top square too
 
-# In[54]:
+# In[18]:
 
 
 def read_distances(t,act):
@@ -441,7 +441,7 @@ def read_distances(t,act):
     
 
 
-# In[55]:
+# In[19]:
 
 
 state_machine=StateMachine(
@@ -449,7 +449,7 @@ state_machine=StateMachine(
 )
 
 
-# In[56]:
+# In[20]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -473,7 +473,7 @@ run_sim(env,robot.controller,
        )
 
 
-# In[57]:
+# In[21]:
 
 
 robot.distances
@@ -483,7 +483,7 @@ robot.distances
 
 # ## do a read state
 
-# In[58]:
+# In[28]:
 
 
 def read_state(t,act):
@@ -556,7 +556,7 @@ state_machine=StateMachine(
     
 
 
-# In[59]:
+# In[29]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -580,7 +580,7 @@ run_sim(env,robot.controller,
        )
 
 
-# In[60]:
+# In[30]:
 
 
 robot.state
@@ -588,7 +588,7 @@ robot.state
 
 # something is wrong with position 5
 
-# In[61]:
+# In[31]:
 
 
 def read_state(t,act):
@@ -665,7 +665,7 @@ state_machine=StateMachine(
     
 
 
-# In[62]:
+# In[32]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -692,7 +692,7 @@ run_sim(env,robot.controller,
 
 # ## now with a fixed read state
 
-# In[66]:
+# In[33]:
 
 
 def read_state(t,act):
@@ -768,7 +768,7 @@ state_machine=StateMachine(
     
 
 
-# In[67]:
+# In[34]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -792,7 +792,7 @@ run_sim(env,robot.controller,
        )
 
 
-# In[68]:
+# In[35]:
 
 
 robot.state
@@ -800,7 +800,7 @@ robot.state
 
 # ## works for this case, but can it work for other states?  try randomly generating boards!
 
-# In[69]:
+# In[40]:
 
 
 state=Board(3,3)
@@ -809,7 +809,7 @@ for i in range(9):
 state
 
 
-# In[70]:
+# In[41]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -844,15 +844,15 @@ print(robot.state)
 # ooops!  what's going on?  def getting the blank squares, but making errors.  
 # 
 # - maybe the distance is more like 2.1 rather than 2.
-# - maybe make the piece0 bigger to make it easier to distinguish between
+# - maybe make the pieceO (player 2) bigger to make it easier to distinguish between
 
-# In[71]:
+# In[42]:
 
 
 robot.distances
 
 
-# In[72]:
+# In[43]:
 
 
 def pieceX(env,x,y):
@@ -871,7 +871,7 @@ def pieceO(env,x,y):
  
 
 
-# In[73]:
+# In[44]:
 
 
 def read_state(t,act):
@@ -947,7 +947,7 @@ state_machine=StateMachine(
     
 
 
-# In[74]:
+# In[45]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -983,13 +983,13 @@ print(state)
 print(robot.state)
 
 
-# In[75]:
+# In[46]:
 
 
 robot.distances
 
 
-# In[76]:
+# In[47]:
 
 
 state==robot.state
@@ -997,13 +997,13 @@ state==robot.state
 
 # ### automate this process
 
-# In[77]:
+# In[48]:
 
 
 from tqdm import tqdm
 
 
-# In[78]:
+# In[49]:
 
 
 for i in tqdm(range(100)):
@@ -1035,10 +1035,6 @@ for i in tqdm(range(100)):
         else:
             pass
 
-    # for x in [8,16,24]:
-    #     for y in [7,15,22]:
-    #         Box(env,x=x,y=y,density=0.001)
-
     run_sim(env,robot.controller, 
             figure_width=6,
            total_time=100,
@@ -1052,9 +1048,13 @@ for i in tqdm(range(100)):
 
 # ## Now that I have a working read state, let's see if I can get a make move working
 
+# ### The Plan
+# 
+# <img src="images/TTT Plan.png" width=300>
+
 # ### first step - get the moving part of the robot, and the pieces where I need them
 
-# In[79]:
+# In[50]:
 
 
 def build(robot,name=None):
@@ -1136,7 +1136,8 @@ def build(robot,name=None):
 
     connect(disk_center,disks,'weld')
 
-   
+    # The moving part of the robot here
+    
     ##  home position
     robot.home_x=3
     robot.home_y=3
@@ -1165,7 +1166,7 @@ def build(robot,name=None):
         
 
 
-# In[80]:
+# In[56]:
 
 
 def place_pieces(env):
@@ -1190,7 +1191,7 @@ def place_pieces(env):
             raise ValueError("You can't get there from here.")
 
 
-# In[81]:
+# In[57]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -1211,9 +1212,14 @@ run_sim(env,robot.controller,
 print(robot.state)
 
 
-# the idea here is that, say, to move to position 0 I want to move north to about (3,27), then east to (10,27), then south to about (10,20) to push the piece into position.  Then reverse those steps to move back home.
+# the idea here is that, say, to move a piece to game (board) location 0 
+# 
+# 1. I want to move north to about (3,27)
+# 2. then east to (10,27)
+# 3. then south to about (10,20) to push the piece into position.  
+# 4. Then reverse those steps to move back home.
 
-# In[84]:
+# In[58]:
 
 
 def north(t,robot):
@@ -1264,11 +1270,11 @@ def until_xy(x,y):
         
 
 move0=StateMachine(
-    ([north,until_xy(3,27),turn_purple],"_end_simulation"),
+    ([north,until_xy(3,27),off,turn_purple],"_end_simulation"),
 )
 
 
-# In[85]:
+# In[59]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -1295,7 +1301,7 @@ print(robot.state)
 # 
 # while we're at it, let's monitor the distance to the target location.
 
-# In[86]:
+# In[61]:
 
 
 def monitor(t,robot):
@@ -1305,7 +1311,7 @@ def monitor(t,robot):
         robot.message=t,None,robot.controller.current_state    
 
 
-# In[87]:
+# In[62]:
 
 
 def build(robot,name=None):
@@ -1416,7 +1422,7 @@ def build(robot,name=None):
         
 
 
-# In[88]:
+# In[63]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -1439,7 +1445,7 @@ print(robot.state)
 
 # ### add one more step to the move
 
-# In[89]:
+# In[64]:
 
 
 
@@ -1449,7 +1455,7 @@ move0=StateMachine(
 )
 
 
-# In[90]:
+# In[65]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -1472,7 +1478,7 @@ print(robot.state)
 
 # ### adding another step
 
-# In[91]:
+# In[66]:
 
 
 move0=StateMachine(
@@ -1482,7 +1488,7 @@ move0=StateMachine(
 )
 
 
-# In[92]:
+# In[67]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -1504,8 +1510,10 @@ print(robot.state)
 
 
 # ### Now in reverse
+# 
+# The reverse statemachine has to be defined first, because it's called by the forward statemachine
 
-# In[93]:
+# In[68]:
 
 
 move0_reverse=StateMachine(
@@ -1521,7 +1529,7 @@ move0_forward=StateMachine(
 )
 
 
-# In[94]:
+# In[69]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -1546,7 +1554,7 @@ print(robot.state)
 
 # ### fix these issues
 
-# In[95]:
+# In[70]:
 
 
 def pieceX(env,x,y):
@@ -1565,7 +1573,7 @@ def pieceO(env,x,y):
  
 
 
-# In[96]:
+# In[71]:
 
 
 move0_reverse=StateMachine(
@@ -1581,7 +1589,7 @@ move0_forward=StateMachine(
 )
 
 
-# In[97]:
+# In[72]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -1606,7 +1614,7 @@ print(robot.state)
 # 
 # I could copy/paste this, but I like to do loops.  I am still not sure how I'm going to handle the middle piece
 
-# In[98]:
+# In[74]:
 
 
 moves=[  
@@ -1744,14 +1752,14 @@ for move in range(6,9):
 
 
 
-# In[99]:
+# In[76]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
 robot=Robot(env)
 build(robot)
 
-move=4
+move=5
 robot.controller=Controller(forward_state_machines[move])
 robot.controller.monitor=monitor
 
@@ -1767,7 +1775,7 @@ run_sim(env,robot.controller,
 print(robot.state)
 
 
-# ## Now that make move is working, let's see if we can put it together to make a move
+# ## Now that make move is working, let's see if we can put it together to play the full game
 
 # the recipe is:
 # 
@@ -1797,7 +1805,7 @@ print(robot.state)
 # - make the move functions not end the simulation!
 # 
 
-# In[107]:
+# In[77]:
 
 
 def get_move(t,robot):
@@ -1826,7 +1834,15 @@ def monitor(t,robot):
         robot.message=t,None,robot.controller.current_state    
 
 
-# In[108]:
+# the recipe is:
+# 
+# In the robot simulator:
+# - read state
+# - from the state, get a move (from one of the game agents)
+# - make the move
+# 
+
+# In[78]:
 
 
 state_machine=StateMachine(
@@ -1835,10 +1851,10 @@ state_machine=StateMachine(
 )
 
 
-# In[109]:
+# In[90]:
 
 
-state=random.choice(list(Q1.keys()))
+#state=random.choice(list(Q1.keys()))
 state=initial_state()
 
 print(state)
@@ -1847,7 +1863,7 @@ if _:
     raise ValueError
 
 
-# In[116]:
+# In[93]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
@@ -1884,7 +1900,7 @@ run_sim(env,robot.controller,
 print(robot.state)
 
 
-# In[117]:
+# In[92]:
 
 
 state=update_state(robot.state,1,robot.move)
