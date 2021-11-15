@@ -250,6 +250,40 @@ sub_image.shape
 imshow(sub_image)
 
 
+# saving the cat
+
+# In[88]:
+
+
+for r in range(3):
+    for c in range(3):
+        sub_image=im[ (start_row+sub_image_rows*r):(start_row+sub_image_rows*(r+1)) , 
+              (start_col+sub_image_cols*c):(start_col+sub_image_cols*(c+1))  ,
+              :]  # all the channels
+        filename=f"images/cat {r} {c}.jpeg"
+        imsave(filename,sub_image)
+
+
+# In[90]:
+
+
+
+count=0
+for image_filename in ['images/cats.jpeg','images/cats copy.jpeg','images/cats copy 2.jpeg']:
+    im=imread(image_filename)
+    print(image_filename)
+    for r in range(3):
+        for c in range(3):
+            sub_image=im[ (start_row+sub_image_rows*r):(start_row+sub_image_rows*(r+1)) , 
+                  (start_col+sub_image_cols*c):(start_col+sub_image_cols*(c+1))  ,
+                  :]  # all the channels
+            filename=f"images/cat {count}.jpeg"
+            print("\t",filename)
+            
+            imsave(filename,sub_image)    
+            count+=1
+
+
 # In[ ]:
 
 
