@@ -42,22 +42,36 @@ def monitor(t,robot):
     pass
 
 
-# In[14]:
+# In[38]:
 
 
 def nothing(t,robot):
     return True
 
+def take_picture(t,robot):
+    import os
+    
+    count=0
+    filename=f'images/misc_robot {count}.jpeg'
+    
+    while os.path.exists(filename):
+        count+=1
+        filename=f'images/misc_robot {count}.jpeg'
+    
+    
+    robot.take_picture(filename)
+    return True    
 
-# In[15]:
+
+# In[39]:
 
 
 state_machine=StateMachine(
-    (nothing,"_end_simulation"),
+    (take_picture,"_end_simulation"),
 )
 
 
-# In[29]:
+# In[55]:
 
 
 def random_game_state():
@@ -68,7 +82,30 @@ def random_game_state():
     return state
 
 
-# In[30]:
+# In[56]:
+
+
+def random_TTT_game_state():
+    Q=LoadTable('../Sprint #2 - Learning and Simulation/2021-10-18 TTT Q1.json')    
+    keys=list(Q.keys())
+    state=Board(3,3)
+    state.board=random.choice(keys)
+    return state
+
+
+# In[58]:
+
+
+random_TTT_game_state()
+
+
+# In[ ]:
+
+
+
+
+
+# In[43]:
 
 
 env=FrictionEnvironment(30,30)
