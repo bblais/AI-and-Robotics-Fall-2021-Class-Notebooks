@@ -144,7 +144,7 @@ def build(robot,x=1,y=2,name=None):
       
 
 
-# In[9]:
+# In[13]:
 
 
 def nothing(t,robot):
@@ -174,13 +174,18 @@ def turn_purple(t,robot):
     return True    
 
 
+def take_picture(t,robot):
+    robot.take_picture('images/ttt_robot.jpeg')
+    return True    
+
+
 # ## Set up board, size of pieces, location of pieces
 
-# In[10]:
+# In[14]:
 
 
 state_machine=StateMachine(
-    (nothing,"_end_simulation"),
+    (take_picture,"_end_simulation"),
 )
 
 
@@ -200,7 +205,7 @@ def pieceO(env,x,y):
     
 
 
-# In[11]:
+# In[15]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
