@@ -13,6 +13,12 @@ get_ipython().run_line_magic('pylab', 'inline')
 im=imread('images/cats.jpeg')
 
 
+# https://www.theverge.com/2021/4/12/22379880/artificial-intelligence-cat-photos-gan
+# 
+# https://thiscatdoesnotexist.com/
+# 
+# https://thispersondoesnotexist.com/
+
 # In[41]:
 
 
