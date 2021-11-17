@@ -30,7 +30,7 @@ state
 from RobotSim373 import *
 
 
-# In[13]:
+# In[5]:
 
 
 def build(robot,x=1,y=2,name=None):
@@ -42,7 +42,7 @@ def monitor(t,robot):
     pass
 
 
-# In[38]:
+# In[6]:
 
 
 def nothing(t,robot):
@@ -63,7 +63,20 @@ def take_picture(t,robot):
     return True    
 
 
-# In[39]:
+# In[7]:
+
+
+def take_picture(t,robot):
+    from time import time
+    timestr=str(time()).replace(".","_")
+    image_filename=f'images/misc_robot_{timestr}.jpeg'
+    robot.take_picture(image_filename)
+    robot.image_filename=image_filename  # save the last name
+    
+    return True    
+
+
+# In[8]:
 
 
 state_machine=StateMachine(
@@ -71,7 +84,7 @@ state_machine=StateMachine(
 )
 
 
-# In[55]:
+# In[9]:
 
 
 def random_game_state():
@@ -82,7 +95,7 @@ def random_game_state():
     return state
 
 
-# In[56]:
+# In[10]:
 
 
 def random_TTT_game_state():
@@ -93,7 +106,7 @@ def random_TTT_game_state():
     return state
 
 
-# In[58]:
+# In[11]:
 
 
 random_TTT_game_state()
@@ -105,7 +118,7 @@ random_TTT_game_state()
 
 
 
-# In[43]:
+# In[12]:
 
 
 env=FrictionEnvironment(30,30)
