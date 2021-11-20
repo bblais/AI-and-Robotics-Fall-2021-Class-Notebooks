@@ -234,6 +234,36 @@ imshow(new_image)
 new_image.shape
 
 
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
 # In[18]:
 
 
@@ -255,6 +285,30 @@ target_name=data_train.target_names[target_number]
 target_name
 
 
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
 # In[24]:
 
 
@@ -265,6 +319,48 @@ new_vector
 
 
 data_train.vectors
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
 
 # yikes!   the data_train are between 0 and 255, and the vector is from 0 to 1!  No wonder it screwed up.

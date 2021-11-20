@@ -24,13 +24,13 @@ for i in range(35):
 state
 
 
-# In[4]:
+# In[3]:
 
 
 from RobotSim373 import *
 
 
-# In[5]:
+# In[4]:
 
 
 def build(robot,x=1,y=2,name=None):
@@ -42,7 +42,7 @@ def monitor(t,robot):
     pass
 
 
-# In[6]:
+# In[5]:
 
 
 def nothing(t,robot):
@@ -63,7 +63,7 @@ def take_picture(t,robot):
     return True    
 
 
-# In[7]:
+# In[6]:
 
 
 def take_picture(t,robot):
@@ -76,6 +76,15 @@ def take_picture(t,robot):
     return True    
 
 
+# In[7]:
+
+
+def take_picture(t,robot):
+    robot.take_picture("board.jpeg")
+    
+    return True    
+
+
 # In[8]:
 
 
@@ -84,7 +93,7 @@ state_machine=StateMachine(
 )
 
 
-# In[9]:
+# In[10]:
 
 
 def random_game_state():
@@ -118,7 +127,7 @@ random_TTT_game_state()
 
 
 
-# In[12]:
+# In[11]:
 
 
 env=FrictionEnvironment(30,30)
