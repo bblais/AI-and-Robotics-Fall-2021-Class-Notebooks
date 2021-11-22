@@ -26,6 +26,8 @@ data_test=double_moon_data(d=-2,N=200)
 plot2D(data_train)
 
 
+# ## no hidden layer, linear units = Perceptron
+
 # In[6]:
 
 
@@ -353,6 +355,54 @@ for i in range(6):
     
     
     subplot(2,3,i+1)
+    imshow(weights_image,cmap=cm.gray)
+    axis('off')
+
+
+# ## try with challenge data set
+
+# In[70]:
+
+
+images=image.load_images('images/ttt pics/training pieces challenge',verbose=False)
+images=remap_targets(images,new_target_names=['_','X','O'])
+summary(images)
+
+
+# In[71]:
+
+
+data=image.images_to_vectors(images)
+data.vectors-=data.vectors.mean()
+data.vectors/=data.vectors.std()
+summary(data)
+data_train,data_test=split(data)
+
+
+# In[76]:
+
+
+C=NumPyNetBackProp({
+    'input':7500,               # number of features
+    'hidden':[(25,'tanh'),],
+    'output':(3,'tanh'),  # number of classes
+    'cost':'mse'
+})
+C.fit(data_train.vectors,data_train.targets,epochs=3000)
+print("On the training set: ",C.percent_correct(data_train.vectors,data_train.targets))
+print("On the test set: ",C.percent_correct(data_test.vectors,data_test.targets))
+
+
+# In[78]:
+
+
+for i in range(12):
+    weights_image=C.weights[0][:,i].reshape(50,50,3)
+    weights_image-=weights_image.min()  # sets the min to zero
+    weights_image/=weights_image.max()  # sets the max to 1
+    
+    
+    subplot(3,4,i+1)
     imshow(weights_image,cmap=cm.gray)
     axis('off')
 

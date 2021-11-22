@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 
 get_ipython().run_line_magic('pylab', 'inline')
 
 
-# In[3]:
+# In[2]:
 
 
 from Game import *
 from RobotSim373 import *
 
 
-# In[4]:
+# In[3]:
 
 
 from TTT import *
@@ -22,7 +22,7 @@ from TTT import *
 
 # ## take at least 20 pics of your board in various mid-game positions.
 
-# In[32]:
+# In[4]:
 
 
 def take_picture(t,robot):
@@ -139,7 +139,7 @@ for r in range(3):
 
 # ## write a function which takes a board image and the row,col of a square and returns the sub-image of that square
 
-# In[36]:
+# In[8]:
 
 
 def board_square_image(im,r,c):
@@ -212,7 +212,7 @@ for r in range(3):
 # 
 # I'll reuse the random state board code here.  I don't need to save in different filenames, so redo the take picture too.
 
-# In[43]:
+# In[5]:
 
 
 def take_picture(t,robot):
@@ -272,6 +272,93 @@ for i in range(11):
             print(filename)
             count+=1
     
+
+
+# ## make a harder data set by modifying the squares
+
+# In[13]:
+
+
+def board_square_image(im,r,c,randomize=False):
+    if isinstance(im,str):
+        im=imread(im)
+        
+    board_im=im[55:375,65:375]    
+    
+    
+    start_row=77
+    start_col=79
+    sub_image_rows=50
+    sub_image_cols=50
+
+    if randomize:
+        offset_r=randint(-20,20)
+        offset_c=randint(-20,20)
+    else:
+        offset_r=0
+        offset_c=0
+        
+    
+    
+    sub_image=board_im[ (start_row+offset_r+sub_image_rows*r):(start_row+offset_r+sub_image_rows*(r+1)) , 
+                  (start_col+offset_c+sub_image_cols*c):(start_col+offset_c+sub_image_cols*(c+1))  ,
+                  :]  # all the channels
+    
+    
+    return sub_image
+
+
+# In[16]:
+
+
+folders=[
+    'images/ttt pics/training pieces challenge/_',
+    'images/ttt pics/training pieces challenge/X',
+    'images/ttt pics/training pieces challenge/O',
+        ]
+
+
+# In[17]:
+
+
+count=0
+for i in range(30):
+    env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
+    robot=Robot(env)
+    build(robot)
+    robot.controller=Controller(state_machine)
+    robot.controller.monitor=monitor
+
+    state=random_TTT_game_state()
+    set_up_board(env,state)
+
+    run_sim(env,robot.controller, 
+            figure_width=6,
+           total_time=100,
+           dt_display=0.1,  # make this larger for a faster display
+           )
+
+    
+    im=imread(robot.image_filename)    
+    
+    for r in range(3):
+        for c in range(3):
+            sub_image=board_square_image(im,r,c,randomize=True)
+    
+            folder=folders[state[r,c]]
+            filename=folder+f"/square{count}.jpeg"
+            imsave(filename,sub_image)
+            print(filename)
+            
+#             subplot(3,3,count+1)
+#             imshow(sub_image)
+            count+=1
+
+
+# In[ ]:
+
+
+
 
 
 # ## run a classification algorithm on your square images to determine what the square contains
