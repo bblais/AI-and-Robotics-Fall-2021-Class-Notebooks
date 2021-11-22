@@ -267,6 +267,82 @@ for i in range(50):
     axis('off')
 
 
+# ## color images
+
+# In[62]:
+
+
+images=image.load_images('images/ttt pics/training pieces',verbose=False)
+images=remap_targets(images,new_target_names=['_','X','O'])
+summary(images)
+
+
+# In[63]:
+
+
+data=image.images_to_vectors(images)
+data.vectors-=data.vectors.mean()
+data.vectors/=data.vectors.std()
+summary(data)
+data_train,data_test=split(data)
+
+
+# In[64]:
+
+
+C=NumPyNetBackProp({
+    'input':7500,               # number of features
+    'hidden':[(50,'tanh'),],
+    'output':(3,'tanh'),  # number of classes
+    'cost':'mse'
+})
+C.fit(data_train.vectors,data_train.targets,epochs=3000)
+print("On the training set: ",C.percent_correct(data_train.vectors,data_train.targets))
+print("On the test set: ",C.percent_correct(data_test.vectors,data_test.targets))
+
+
+# In[65]:
+
+
+for i in range(50):
+    weights_image=C.weights[0][:,i].reshape(50,50,3)
+    subplot(6,9,i+1)
+    imshow(weights_image,cmap=cm.gray)
+    axis('off')
+
+
+# the values need to be between 0 and 1 for an image
+
+# In[66]:
+
+
+for i in range(50):
+    weights_image=C.weights[0][:,i].reshape(50,50,3)
+    weights_image-=weights_image.min()  # sets the min to zero
+    weights_image/=weights_image.max()  # sets the max to 1
+    
+    
+    subplot(6,9,i+1)
+    imshow(weights_image,cmap=cm.gray)
+    axis('off')
+
+
+# try a much smaller network
+
+# In[67]:
+
+
+C=NumPyNetBackProp({
+    'input':7500,               # number of features
+    'hidden':[(6,'tanh'),],
+    'output':(3,'tanh'),  # number of classes
+    'cost':'mse'
+})
+C.fit(data_train.vectors,data_train.targets,epochs=3000)
+print("On the training set: ",C.percent_correct(data_train.vectors,data_train.targets))
+print("On the test set: ",C.percent_correct(data_test.vectors,data_test.targets))
+
+
 # In[ ]:
 
 
