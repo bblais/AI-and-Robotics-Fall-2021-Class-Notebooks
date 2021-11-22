@@ -243,6 +243,30 @@ for i in range(20):
     axis('off')
 
 
+# In[57]:
+
+
+C=NumPyNetBackProp({
+    'input':64,               # number of features
+    'hidden':[(50,'tanh'),],
+    'output':(10,'tanh'),  # number of classes
+    'cost':'mse'
+})
+C.fit(data_train.vectors,data_train.targets,epochs=3000)
+print("On the training set: ",C.percent_correct(data_train.vectors,data_train.targets))
+print("On the test set: ",C.percent_correct(data_test.vectors,data_test.targets))
+
+
+# In[59]:
+
+
+for i in range(50):
+    weights_image=C.weights[0][:,i].reshape(8,8)
+    subplot(6,9,i+1)
+    imshow(weights_image,cmap=cm.gray)
+    axis('off')
+
+
 # In[ ]:
 
 
