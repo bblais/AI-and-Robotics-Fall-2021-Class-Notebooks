@@ -596,7 +596,7 @@ robot.state
 # In[31]:
 
 
-def read_state(t,act):
+def read_state(t,robot):
     
     #angle in range(0,360,30):
 
@@ -700,7 +700,7 @@ run_sim(env,robot.controller,
 # In[33]:
 
 
-def read_state(t,act):
+def read_state(t,robot):
     
     #angle in range(0,360,30):
 
@@ -879,7 +879,7 @@ def pieceO(env,x,y):
 # In[44]:
 
 
-def read_state(t,act):
+def read_state(t,robot):
     
     #angle in range(0,360,30):
 
@@ -1875,7 +1875,6 @@ env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')
 robot=Robot(env)
 build(robot)
 
-move=8
 robot.controller=Controller(state_machine)
 robot.controller.monitor=monitor
 

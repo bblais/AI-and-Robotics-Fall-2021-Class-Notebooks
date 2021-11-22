@@ -51,9 +51,7 @@ get_ipython().system('pip install scikit-learn')
 get_ipython().system('pip install "git+https://github.com/bblais/classy" --upgrade')
 
 
-# ## Sprint #5
-
-# In[2]:
+# In[1]:
 
 
 get_ipython().system('pip install "git+https://github.com/bblais/NumpyNet" --upgrade')
@@ -63,6 +61,12 @@ get_ipython().system('pip install "git+https://github.com/bblais/NumpyNet" --upg
 
 
 get_ipython().system('pip install tqdm')
+
+
+# In[4]:
+
+
+get_ipython().system('pip install import-ipynb  # check out https://github.com/axil/import-ipynb')
 
 
 # In[ ]:

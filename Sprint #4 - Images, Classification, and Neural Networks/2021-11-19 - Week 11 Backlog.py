@@ -276,7 +276,7 @@ for i in range(11):
 
 # ## run a classification algorithm on your square images to determine what the square contains
 
-# In[58]:
+# In[1]:
 
 
 from classy import *
