@@ -329,7 +329,7 @@ for i in range(50):
 
 # try a much smaller network
 
-# In[67]:
+# In[68]:
 
 
 C=NumPyNetBackProp({
@@ -341,6 +341,20 @@ C=NumPyNetBackProp({
 C.fit(data_train.vectors,data_train.targets,epochs=3000)
 print("On the training set: ",C.percent_correct(data_train.vectors,data_train.targets))
 print("On the test set: ",C.percent_correct(data_test.vectors,data_test.targets))
+
+
+# In[69]:
+
+
+for i in range(6):
+    weights_image=C.weights[0][:,i].reshape(50,50,3)
+    weights_image-=weights_image.min()  # sets the min to zero
+    weights_image/=weights_image.max()  # sets the max to 1
+    
+    
+    subplot(2,3,i+1)
+    imshow(weights_image,cmap=cm.gray)
+    axis('off')
 
 
 # In[ ]:
