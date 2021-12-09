@@ -91,13 +91,13 @@ for i in range(30):
 
 # ## show how to slice the image into its individual playing squares
 
-# In[34]:
+# In[5]:
 
 
 fname='images/ttt pics/random board pics/ttt_robot_1637076443_4151511.jpeg'
 
 
-# In[35]:
+# In[6]:
 
 
 im=imread(fname)
@@ -107,7 +107,7 @@ im.shape
 
 # ### select the board out of this
 
-# In[17]:
+# In[7]:
 
 
 board_im=im[55:375,65:375]
@@ -116,13 +116,19 @@ imshow(board_im)
 
 # ### select sub-squares
 
-# In[31]:
+# In[8]:
 
 
 start_row=77
 start_col=79
 sub_image_rows=50
 sub_image_cols=50
+
+start_row=77
+start_col=78
+sub_image_rows=50
+sub_image_cols=50
+
 
 
 count=1
@@ -266,6 +272,16 @@ for i in range(11):
         for c in range(3):
             sub_image=board_square_image(im,r,c)
     
+    
+            if state[r,c]==0:
+                filename=f"images/ttt pics/training pieces/_/square{count}.jpeg"
+            elif state[r,c]==1:
+                filename=f"images/ttt pics/training pieces/X/square{count}.jpeg"
+            elif state[r,c]==2:
+                filename=f"images/ttt pics/training pieces/O/square{count}.jpeg"
+            else:
+                raise ValueError("You can't get there from here.")
+        
             folder=folders[state[r,c]]
             filename=folder+f"/square{count}.jpeg"
             imsave(filename,sub_image)
@@ -276,7 +292,7 @@ for i in range(11):
 
 # ## make a harder data set by modifying the squares
 
-# In[13]:
+# In[14]:
 
 
 def board_square_image(im,r,c,randomize=False):
@@ -363,13 +379,13 @@ for i in range(30):
 
 # ## run a classification algorithm on your square images to determine what the square contains
 
-# In[1]:
+# In[9]:
 
 
 from classy import *
 
 
-# In[60]:
+# In[10]:
 
 
 images=image.load_images('images/ttt pics/training pieces')
@@ -377,13 +393,13 @@ images=remap_targets(images,new_target_names=['_','X','O'])
 summary(images)
 
 
-# In[61]:
+# In[11]:
 
 
 data=image.images_to_vectors(images)
 
 
-# In[62]:
+# In[12]:
 
 
 C=NaiveBayes()
@@ -392,7 +408,7 @@ C.fit(data.vectors,data.targets)
 
 # ### make a random board, slice it, and classify each piece
 
-# In[68]:
+# In[15]:
 
 
 env=FrictionEnvironment(30,30,image='images/Tic Tac Toe Board With Border.png')

@@ -97,7 +97,7 @@ run_sim(env,robot.controller,
        )
 
 
-# In[9]:
+# In[ ]:
 
 
 state=update_state(robot.state,1,robot.move)
